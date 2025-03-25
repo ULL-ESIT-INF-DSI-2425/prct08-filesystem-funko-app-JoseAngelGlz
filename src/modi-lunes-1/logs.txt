@@ -1,0 +1,4 @@
+ERROR Se produjo un problema
+INFO Operación completada correctamente
+WARNING Espacio en disco bajo
+ERROR Error al procesar la solicitud

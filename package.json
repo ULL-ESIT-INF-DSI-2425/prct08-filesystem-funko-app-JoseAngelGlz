@@ -6,6 +6,8 @@
   "scripts": {
     "doc": "typedoc",
     "build": "tsc",
+    "start1": "node dist/modi-lunes-1/index.js",
+    "start2": "node dist/modi-lunes-2/index.js",
     "coverage": "vitest --coverage --coverage.include src/**/*.ts",
     "test": "vitest"
   },
