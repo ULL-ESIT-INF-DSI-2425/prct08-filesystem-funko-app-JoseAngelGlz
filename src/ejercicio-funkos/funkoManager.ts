@@ -26,24 +26,26 @@ export class FunkoManager {
    * Añade un funko
    * @param funko - Funko a añadir
    */
-  public add(funko: Funko): void {
+  public add(funko: Funko): void | undefined {
     const fileName = path.join(this.path, `${funko.ID}.json`);
     if (!fs.existsSync(fileName)) {
       fs.writeFileSync(fileName, JSON.stringify(funko, null, 2));
       console.log(chalk.green(`Funko ${funko.name} añadido correctamente`));
     } else {
       console.log(chalk.red(`El funko ${funko.name} ya existe para el usuario ${this.user}`));
+      return undefined;
     }
   }
 
 
-  public remove(ID: number): void {
+  public remove(ID: number): void | undefined {
     const fileName = path.join(this.path, `${ID}.json`);
     if (fs.existsSync(fileName)) {
       fs.unlinkSync(fileName);
       console.log(chalk.green(`Funko con ID ${ID} eliminado correctamente`));
     } else {
       console.log(chalk.red(`El funko con ID ${ID} no existe para el usuario ${this.user}`));
+      return undefined;
     }
   }
 
@@ -51,13 +53,14 @@ export class FunkoManager {
    * Actualiza un funko
    * @param funko - Funko a actualizar
    */
-  public update(funko: Funko): void {
+  public update(funko: Funko): void | undefined{
     const fileName = path.join(this.path, `${funko.ID}.json`);
     if (fs.existsSync(fileName)) {
       fs.writeFileSync(fileName, JSON.stringify(funko, null, 2));
       console.log(chalk.green(`Funko ${funko.name} actualizado correctamente`));
     } else {
       console.log(chalk.red(`El funko ${funko.name} no existe para el ususario ${this.user}`));
+      return undefined;
     }
   }
 
@@ -66,7 +69,7 @@ export class FunkoManager {
    * @param value - Valor del funko
    * @returns Color del valor
    */
-  private getColour(value: number): typeof chalk {
+  public getColour(value: number): typeof chalk {
     if (value < 10) {
       return chalk.red;
     } else if (value < 20) {
@@ -81,10 +84,11 @@ export class FunkoManager {
   /**
    * Imprime los funkos
    */
-  public printAll(): void {
+  public printAll(): void | undefined{
     const files = fs.readdirSync(this.path);
     if (files.length === 0) {
       console.log(chalk.red('No hay funkos para imprimir para el usuario ${this.user}'));
+      return undefined;
     } else {
       console.log(`Listado de Funkos para el usuario ${this.user}:`);
       files.forEach((file) => {
@@ -110,7 +114,7 @@ export class FunkoManager {
    * Imprime un funko
    * @param ID - Identificador del funko
    */
-  public print(ID: number): void {
+  public print(ID: number): void | undefined {
     const fileName = path.join(this.path, `${ID}.json`);
     if (fs.existsSync(fileName)) {
       const data = fs.readFileSync(fileName, 'utf-8');
@@ -127,6 +131,7 @@ export class FunkoManager {
       console.log(this.getColour(funko.value)(` - Valor: ${funko.value}`));
     } else {
       console.log(chalk.red(`El funko con ID ${ID} no existe para el usuario ${this.user}`));
+      return undefined;
     }
   }
 }

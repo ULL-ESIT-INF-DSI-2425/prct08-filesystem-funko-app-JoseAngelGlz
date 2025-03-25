@@ -6,6 +6,7 @@
   "scripts": {
     "doc": "typedoc",
     "build": "tsc",
+    "coverage": "vitest --coverage --coverage.include src/**/*.ts",
     "test": "vitest"
   },
   "repository": {
