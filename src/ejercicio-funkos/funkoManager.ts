@@ -7,8 +7,8 @@ import { Funko } from './funko.js';
  * Clase FunkoManager
  */
 export class FunkoManager {
-  private path: string;
-  private user: string;
+  private readonly path: string;
+  private readonly user: string;
 
   /**
    * Constructor de la clase FunkoManager
