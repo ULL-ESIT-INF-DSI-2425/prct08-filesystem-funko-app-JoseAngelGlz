@@ -72,8 +72,9 @@ export function remove(file: string, recycleBin: string) {
 }
 
 /**
- * Función que elimina un fichero de forma segura
-
+ * Función que mueve un fichero o directorio a otro directorio
+ * @param pathFile - Ruta del fichero
+ * @param pathDirectory - Ruta del directorio
  */
 export function move(pathFile: string, pathDirectory: string) {
 
